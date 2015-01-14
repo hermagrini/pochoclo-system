@@ -1,0 +1,29 @@
+application: pochoclo-system
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: /client/css
+  static_dir: client/css
+
+- url: /client/img
+  static_dir: client/img
+
+- url: /client/js
+  static_dir: client/js
+
+- url: /client/js/vendor
+  static_dir: client/js/vendor
+
+- url: /client/views
+  static_dir: client/views
+
+- url: /client/favicon\.ico
+  static_files: favicon.ico
+  upload: favicon.ico
+
+- url: .*
+  script: main.app

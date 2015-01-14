@@ -1,0 +1,119 @@
+<div id="miContenedor" class="row-fluid">
+    <h3 class="pagination-centered blue span8 offset2">Plan de Cuentas</h3>
+    <div ng-repeat="tipo in tipos">
+        <div class="span8 offset2 well">
+            <div class="row-fluid">
+                <h4 class="legend span6">{{tipo.nombre}}</h4>
+                <div class="span6">
+                    <div class="btn-group pull-right">
+                        <button ng-click="abrirDetalle('{{'tipo_'+tipo.id}}')"  class="btn">Ver Rubros</button>
+                        <button class="btn" ng-click="crearRubro(tipo.id)"><i class="icon-plus close"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div id="tipo_{{tipo.id}}" class="row-fluid">
+                <div ng-repeat="rubro in rubros | filter: {idTipo:tipo.id}">
+                    <div class="row-fluid alert alert-info">
+                        <div class="span6">{{rubro.nombre}}</div>
+                        <div class="span6">
+                            <div class="btn-group pull-right">
+                                <button ng-click="abrirDetalle('{{'rubro_'+rubro.id}}')" class="btn">Ver Cuentas</button>
+                                <button class="btn" ng-click="crearCuenta(rubro.id)"><i class="icon-plus close"></i></button>
+                                <button ng-click="editarRubro(rubro.id)" class="btn"><i class="icon-edit close"></i> </button>
+                                <button ng-click="eliminarElemento('rubro',rubro.id)" class="btn"><i class="icon-trash close"></i> </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="rubro_{{rubro.id}}" class="row-fluid hide">
+                        <div ng-repeat="cuenta in cuentas | filter: {idRubro:rubro.id}">
+                            <div class="span6 well well-small text-center cuenta-container">
+                                <div>{{cuenta.nombre}}</div>
+                                <div class="btn-group pull-right">
+                                    <button ng-click="abrirMayor(cuenta)" class="btn"><i class="icon-book close"></i> </button>
+                                    <button ng-click="editarCuenta(cuenta.id)" class="btn"><i class="icon-edit close"></i> </button>
+                                    <button ng-click="eliminarElemento('cuenta',cuenta.id)" class="btn"><i class="icon-trash close"></i> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bet-modal bet-effect {{modals.rubro}}">
+    <div class="bet-content">
+        <h4>Rubros</h4>
+        <div class="row-fluid" style="margin-top:20px">
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="inputNombre">Nombre</label>
+                    <div class="controls">
+                        <input type="text" name="inputNombre" id="inputNombre" placeholder="Nombre del Rubro" ng-model='formRubro.nombre'>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="btn-group">
+                            <button ng-click="sendForm('rubro',formRubro)" class="btn btn-primary">Guardar Cambios</button>
+                            <button ng-click="hideModal('rubro')" class="btn">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="bet-modal bet-effect {{modals.cuenta}}">
+    <div class="bet-content">
+        <h4>Cuentas</h4>
+        <div class="row-fluid" style="margin-top:20px">
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="inputNombre">Nombre</label>
+                    <div class="controls">
+                        <input type="text" name="inputCuenta" id="inputCuenta" placeholder="Nombre del Rubro" ng-model='formCuenta.nombre'>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="btn-group">
+                            <button ng-click="sendForm('cuenta',formCuenta)" class="btn btn-primary">Guardar Cambios</button>
+                            <button ng-click="hideModal('cuenta')" class="btn">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="bet-modal bet-effect {{modals.mayor}}">
+    <div class="bet-content">
+        <h4>Mayor de {{formMayor.nombre}}</h4>
+        <div class="row-fluid" style="margin-top:20px">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Debe</th>
+                    <th>Haber</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="movimiento in formMayor.movimientos">
+                    <td>{{movimiento.date | date:'dd/mm/yyyy'}}</td>
+                    <td><span ng-show="movimientoTipo('debe',movimiento.tipo)">{{movimiento.monto | currency}}</span></td>
+                    <td><span ng-show="movimientoTipo('haber',movimiento.tipo)">{{movimiento.monto | currency}}</span></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="alert alert-success">Saldo {{formMayor.saldo.tipo}} por {{formMayor.saldo.monto | currency}}</div>
+        </div>
+        <button class="btn btn-primary" ng-click="hideModal('mayor')">Cerrar</button>
+    </div>
+</div>
+
+<div class="bet-overlay"></div>

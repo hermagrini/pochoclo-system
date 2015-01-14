@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pochoclo System</title>
+    <!-- BootStrap & CSS -->
+    <link rel="icon" type="image/png" href="./favicon.ico">
+    <link href="/client/css/main.css" rel="stylesheet" media="screen">
+    <link href="/client/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/client/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+<!-- Dynamic Content -->
+<div id="main-container">
+
+    <header class="container-fluid">
+        <a href="#/" class="span8 offset2 pagination-centered">
+            <img src="/client/img/pochoclo.png" alt="" style="height: 100px !important;"/>
+        </a>
+    </header>
+
+    <div id="body" class="container-fluid" ng-view></div>
+
+    <footer class="row"></footer>
+
+</div>
+</body>
+
+<!-- Vendor -->
+<script src="/client/js/vendor/angular.min.js"></script>
+<script src="/client/js/vendor/angular-animate.min.js"></script>
+<script src="/client/js/vendor/angular-sanitize.min.js"></script>
+<script src="/client/js/vendor/angular-route.min.js"></script>
+<script src="/client/js/vendor/jquery.js"></script>
+<script src="/client/js/vendor/bootstrap.min.js"></script>
+
+<!-- Module: Asiento -->
+<script src="/client/js/asiento/asiento.js"></script>
+<script src="/client/js/asiento/asiento.controller.js"></script>
+
+<!-- Module: Core Entities -->
+<script src="/client/js/coreEntities/coreEntities.cuentas/coreEntities.cuentas.js"></script>
+<script src="/client/js/coreEntities/coreEntities.cuentas/coreEntities.cuentas.service.js"></script>
+<script src="/client/js/coreEntities/coreEntities.rubros/coreEntities.rubros.js"></script>
+<script src="/client/js/coreEntities/coreEntities.rubros/coreEntities.rubros.service.js"></script>
+<script src="/client/js/coreEntities/coreEntities.tipos/coreEntities.tipos.js"></script>
+<script src="/client/js/coreEntities/coreEntities.tipos/coreEntities.tipos.service.js"></script>
+<script src="/client/js/coreEntities/coreEntities.js"></script>
+
+<!-- Module: Cuentas -->
+<script src="/client/js/cuentas/cuentas.js"></script>
+<script src="/client/js/cuentas/cuentas.controller.js"></script>
+
+<!-- Module: Home -->
+<script src="/client/js/home/home.js"></script>
+<script src="/client/js/home/home.controller.js"></script>
+
+<!-- Module: Nuevo Asiento -->
+<script src="/client/js/nuevoAsiento/nuevoAsiento.js"></script>
+<script src="/client/js/nuevoAsiento/nuevoAsiento.controller.js"></script>
+
+<!-- App Definition -->
+<script src="/client/js/app.js"></script>
+<script src="/client/js/app.config.js"></script>
+
+<!-- Manual Bootstrap -->
+<script type="text/javascript">
+angular.element(document).ready(function(){
+    angular.bootstrap(document, ['pochocloApp']);
+});
+</script>
+
+</html>

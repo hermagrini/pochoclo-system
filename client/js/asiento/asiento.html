@@ -1,0 +1,25 @@
+<div class="span8 offset2">
+    <div class="row-fluid well" ng-repeat="asiento in asientos">
+        <legend>
+            <h3>Asiento del día {{asiento.date | date:'shortDate'}}</h3>
+        </legend>
+        <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Descripcion</th>
+                    <th>Debe</th>
+                    <th>Haber</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="movimiento in asiento.movimientos">
+                    <td>{{movimiento.date | date:'shortDate'}}</td>
+                    <td>{{movimiento.cuenta}}</td>
+                    <td><span ng-show="movimientoTipo('debe',movimiento.tipo)">{{movimiento.monto | currency}}</span></td>
+                    <td><span ng-show="movimientoTipo('haber',movimiento.tipo)">{{movimiento.monto | currency}}</span></td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+</div>
