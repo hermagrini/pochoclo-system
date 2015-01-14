@@ -11,7 +11,7 @@
     
     var rubros = [];
 
-    return {
+    var servicio = {
       buscarRubroPorId      : buscarRubroPorId,
       buscarRubroPorIdTipo  : buscarRubroPorIdTipo,
       calcularRubroId       : calcularRubroId,
@@ -19,14 +19,7 @@
       rubros                : rubros
     };
 
-    function calcularRubroId(index){
-      var rubros = buscarRubroPorIdTipo(index);
-      var rubroId = (parseInt(index) * 10);
-      if(rubros.length > 0){
-        rubroId = parseInt(rubros[rubros.length - 1].id);
-      }
-      return rubroId + 1;
-    }
+    return servicio;
 
     function buscarRubroPorId(id){
       return $.grep(rubros,function(rubro){
@@ -40,13 +33,22 @@
       });
     }
 
+    function calcularRubroId(index){
+      var rubros = buscarRubroPorIdTipo(index);
+      var rubroId = (parseInt(index) * 10);
+      if(rubros.length > 0){
+        rubroId = parseInt(rubros[rubros.length - 1].id);
+      }
+      return rubroId + 1;
+    }
+
     function getRubros(){
       return $http.post("rubro/traerListaRubros",{},{cache:true})
           .then(getRubrosCallback)
     }
 
     function getRubrosCallback(response){
-      rubros = response.data;
+      servicio.rubros = response.data;
     }
   }
 })();

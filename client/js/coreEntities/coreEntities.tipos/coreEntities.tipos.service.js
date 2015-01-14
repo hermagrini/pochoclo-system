@@ -11,10 +11,12 @@
 
     var tipos = [];
 
-    return {
+    var servicio = {
       getTipos  : getTipos,
       tipos     : tipos
     };
+
+    return servicio;
 
     function getTipos(){
       return $http.post("tipo/traerListaTipos",{},{cache:true})
@@ -22,7 +24,7 @@
     }
 
     function getTiposCallback(response){
-      tipos = response.data;
+      servicio.tipos = response.data;
     }
   }
 })();

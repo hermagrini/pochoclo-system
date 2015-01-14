@@ -11,7 +11,7 @@
 
     var cuentas = [];
 
-    return {
+    var servicio = {
       buscarCuentaPorId     : buscarCuentaPorId,
       buscarRubroPorIdRubro : buscarRubroPorIdRubro,
       cuentas               : cuentas,
@@ -19,14 +19,7 @@
       getCuentas            : getCuentas
     };
 
-    function calcularCuentaId(index){
-      var cuentas = buscarRubroPorIdRubro(index);
-      var cuentaId = (parseInt(index)*100);
-      if(cuentas.length > 0){
-        cuentaId = parseInt(cuentas[cuentas.length-1].id);
-      }
-      return cuentaId+1;
-    }
+    return servicio;
 
     function buscarCuentaPorId(id){
       return $.grep(cuentas,function(cuenta){
@@ -40,13 +33,22 @@
       });
     }
 
+    function calcularCuentaId(index){
+      var cuentas = buscarRubroPorIdRubro(index);
+      var cuentaId = (parseInt(index)*100);
+      if(cuentas.length > 0){
+        cuentaId = parseInt(cuentas[cuentas.length-1].id);
+      }
+      return cuentaId+1;
+    }
+
     function getCuentas(){
       return $http.post("cuenta/traerListaCuentas",{},{cache:true})
           .then(getCuentasCallback)
     }
 
     function getCuentasCallback(response){
-      cuentas = response.data;
+      servicio.cuentas = response.data;
     }
   }
 

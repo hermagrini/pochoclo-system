@@ -8,6 +8,9 @@
   NuevoAsiento.$inject = ['$scope', '$http', 'CoreEntities.Cuentas'];
 
   function NuevoAsiento($scope, $http, CoreEntitiesCuentas){
+
+    $scope.cuentas = CoreEntitiesCuentas.cuentas;
+    
     $scope.updateData = function(){
       CoreEntitiesCuentas.getCuentas();
     };

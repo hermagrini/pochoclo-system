@@ -10,9 +10,15 @@
   function Cuentas($scope, $http, CoreEntitiesTipos, CoreEntitiesRubros, CoreEntitiesCuentas){
 
     $scope.updateData = function(){
-      CoreEntitiesTipos.getTipos();
-      CoreEntitiesRubros.getRubros();
-      CoreEntitiesCuentas.getCuentas();
+      CoreEntitiesTipos.getTipos().then(function(){
+        $scope.tipos = CoreEntitiesTipos.tipos;
+      });
+      CoreEntitiesRubros.getRubros().then(function(){
+        $scope.rubros = CoreEntitiesRubros.rubros;
+      });;
+      CoreEntitiesCuentas.getCuentas().then(function(){
+        $scope.cuentas = CoreEntitiesCuentas.cuentas;
+      });;
     };
 
     $scope.updateData();
