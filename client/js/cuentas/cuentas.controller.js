@@ -15,10 +15,10 @@
       });
       CoreEntitiesRubros.getRubros().then(function(){
         $scope.rubros = CoreEntitiesRubros.rubros;
-      });;
+      });
       CoreEntitiesCuentas.getCuentas().then(function(){
         $scope.cuentas = CoreEntitiesCuentas.cuentas;
-      });;
+      });
     };
 
     $scope.updateData();

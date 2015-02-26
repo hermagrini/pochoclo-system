@@ -22,13 +22,13 @@
     return servicio;
 
     function buscarCuentaPorId(id){
-      return $.grep(cuentas,function(cuenta){
+      return $.grep(servicio.cuentas,function(cuenta){
         return cuenta.id == id;
       });
     }
 
     function buscarRubroPorIdRubro(idRubro){
-      return $.grep(cuentas,function(cuenta){
+      return $.grep(servicio.cuentas,function(cuenta){
         return cuenta.idRubro == idRubro;
       });
     }

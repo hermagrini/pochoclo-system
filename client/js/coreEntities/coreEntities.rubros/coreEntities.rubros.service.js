@@ -22,13 +22,13 @@
     return servicio;
 
     function buscarRubroPorId(id){
-      return $.grep(rubros,function(rubro){
+      return $.grep(servicio.rubros,function(rubro){
         return rubro.id == id;
       });
     }
 
     function buscarRubroPorIdTipo(idTipo){
-      return $.grep(rubros,function(rubro){
+      return $.grep(servicio.rubros,function(rubro){
         return rubro.idTipo == idTipo;
       });
     }
